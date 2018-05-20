@@ -1,0 +1,1281 @@
+
+public class Address {
+	
+	private String street;
+	private String city;
+	private String state;
+	private String zipCode;
+	
+	public Address()
+	{
+		setStreet(null);
+		setCity(null);
+		setState(null);
+		setZipCode(null);
+	}
+	public Address(String s, String c, String st, String z)
+	{
+		setStreet(s);
+		setCity(c);
+		setState(st);
+		setZipCode(z);
+	}
+	
+	public void setStreet(String s)
+	{
+		street = s;
+	}
+	public void setCity(String c)
+	{
+		city = c;
+	}
+	public void setState(String st)
+	{
+		state = st;
+	}
+	public void setZipCode(String z)
+	{
+		zipCode = z;
+	}
+	
+	public String getStreet()
+	{
+		return street;
+	}
+	public String getCity()
+	{
+		return city;
+	}
+	public String getState()
+	{
+		return state;
+	}
+	public String getZipCode()
+	{
+		return zipCode;
+	}
+	
+	public String toString()
+	{
+		return( "Street" + street +  "City" + city + "State" + state + "Zip Code" + zipCode );
+	}
+}
+
+//Hamd Teklu
+//HW1
+import java.lang.Enum;
+
+public class Car extends Rental {
+	public enum CarType{SEDAN, COUPE, CONVERTIBLE, SPORTS};
+	private CarType carType;
+	private int passenger;
+	
+	public Car()
+	{
+		super();
+		this.carType = carType;
+		this.passenger = passenger;
+	}
+	
+	
+	public Car(double ppd, int nod, int nom, CarType carType, int passenger) {
+		super(ppd, nod, nom);
+		this.carType = carType;
+		this.passenger = passenger;
+		
+	}
+
+
+	public CarType getCarType() {
+		return carType;
+	}
+
+	public void setCarType(CarType carType) {
+		this.carType = carType;
+	}
+
+	public int getPassenger() {
+		return passenger;
+	}
+
+	public void setPassenger(int passenger) {
+		this.passenger = passenger;
+	}
+
+	
+	public String toString() {
+		
+		return ("Car type" + carType + "Passenger" + passenger + super.toString());
+	}
+	
+	
+	
+}
+
+//package javaapplication45;
+
+
+//Hamd Teklu
+//HW1
+
+public class Truck extends Rental
+{	
+	private double rental;
+        private double tonSize;
+        
+        
+        public Truck()
+        {
+            super();
+            this.tonSize = tonSize;
+        }
+
+	public Truck(double ppd, int nod, int nom, double ts)
+
+	{
+            super(ppd,nod,nom);
+            this.tonSize = ts;
+        }
+        
+	public void setTonSize(double tonSize)
+	{
+		if (tonSize < 0.0) 
+                
+	        throw new IllegalArgumentException ("Ton size must be bigger than 0.0");
+		this.tonSize = tonSize;
+	}
+
+	public double getTonSize()
+	{
+		return tonSize;
+	}
+
+}
+//Hamd Teklu
+//HW1
+import java.util.ArrayList;
+
+
+public class Customer {
+	private String name;
+	private Address address;
+	private int creditCardNumber;
+	private int phoneNumber;
+	private ArrayList<Rental> rentalList;
+	
+	public Customer(String name, Address address, int creditCardNumber, int phoneNumber,
+			ArrayList<Rental> rentalList)
+	{
+		this.name = name;
+		this.address = address;
+		this.creditCardNumber = creditCardNumber;
+		this.phoneNumber = phoneNumber;
+		this.rentalList = rentalList;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	public int getCreditCardNumber() {
+		return creditCardNumber;
+	}
+
+	public void setCreditCardNumber(int creditCardNumber) {
+		this.creditCardNumber = creditCardNumber;
+	}
+
+	public int getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(int phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	public ArrayList<Rental> getRentalList() {
+		return rentalList;
+	}
+
+	public void setRentalList(ArrayList<Rental> rentalList) {
+		this.rentalList = rentalList;
+	}
+
+	
+	public String toString()
+	{
+		return "[" + "Customer name=" + name + ", address=" + address + ", creditCardNumber=" + creditCardNumber
+				+ ", phoneNumber=" + phoneNumber + ", rentalList=" + rentalList + "]";
+	}
+	
+	public Rental addRental(Rental R)
+	{
+		return R ;
+	}
+
+	
+	
+}
+
+//Hamd Teklu
+//hw2
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.*;
+
+public class CustomerPanel extends JPanel
+{
+	private JLabel nameLabel;
+	private JLabel streetLabel;
+	private JLabel cityLabel;
+	private JLabel stateLabel;
+	private JLabel zipLabel;
+	private JLabel creditCardNumberLabel;
+	private JLabel phoneNumberLabel;
+	private JLabel buttonLabel;
+
+	private JTextField nameField;
+	private JTextField streetField;
+	private JTextField cityField;
+	private JTextField stateField;
+	private JTextField zipField;
+	private JTextField creditCardNumberField;
+	private JTextField phoneNumberField;
+	private JButton submitButton;
+
+	public CustomerPanel()
+	{
+		setLayout(new GridLayout(8,1));
+		
+		nameLabel = new JLabel(" Enter name");
+		streetLabel = new JLabel( "Enter street");
+		cityLabel = new JLabel( "Enter city");
+		stateLabel = new JLabel ( "Enter state");
+		zipLabel = new JLabel("Enter zip");
+		creditCardNumberLabel = new JLabel("Enter credit card number");
+		phoneNumberLabel = new JLabel("Enter a Phone number");
+		buttonLabel = new JLabel(" Click");
+		submitButton = new JButton("Click to submit");
+
+		nameField = new JTextField(20);
+		nameField.setToolTipText("Enter name");
+		streetField = new JTextField(20);
+		streetField.setToolTipText("Enter street");
+		cityField = new JTextField(20);
+		cityField.setToolTipText("Enter city");
+		stateField = new JTextField(20);
+		stateField.setToolTipText("Enter state");
+		zipField = new JTextField(20);
+		zipField.setToolTipText("XXXXX-XXXX");
+		creditCardNumberField = new JTextField(30);
+		creditCardNumberField.setToolTipText("XXXX-XXXX-XXXX-XXXX");
+		phoneNumberField = new JTextField(20);
+		phoneNumberField.setToolTipText("(XXX)-XXX-XXXX");
+
+
+		submitButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent ae)
+			{
+				String name;
+				String street;
+				String city;
+				String state;
+				//int zip;
+				String zip;
+				//int creditCardNumber;
+				String creditCardNumber;
+				//int phoneNumber;
+				String phoneNumber;
+
+				if (validInput())
+				{
+					name = nameField.getText();
+					street = streetField.getText();
+					city = cityField.getText();
+					state = stateField.getText();
+					//zip = Integer.parseInt(zipField.getText());
+					zip = zipField.getText();
+					//creditCardNumber = Integer.parseInt(creditCardNumberField.getText());
+					creditCardNumber = creditCardNumberField.getText();
+					//phoneNumber = Integer.parseInt(phoneNumberField.getText());
+					phoneNumber =phoneNumberField.getText();
+
+					DBMethod db = new DBMethod();
+					db.insertCustomer(name, street,city,state, zip, creditCardNumber, phoneNumber);
+
+					clearAll();
+				}
+
+
+			}
+
+		});
+
+		add(nameLabel);
+		add(nameField);
+		add(streetLabel);
+		add(streetField);
+		add(cityLabel);
+		add(cityField);
+		add(stateLabel);
+		add(stateField);
+		add(zipLabel);
+		add(zipField);
+		add(creditCardNumberLabel);
+		add(creditCardNumberField);
+		add(phoneNumberLabel);
+		add(phoneNumberField);
+
+
+		add(buttonLabel);
+		add(submitButton);
+	}
+
+public void clearAll()
+{
+	nameField.setText("");
+	streetField.setText("");
+	cityField.setText("");
+	stateField.setText("");
+	zipField.setText("");
+	creditCardNumberField.setText("");
+	phoneNumberField.setText("");
+
+	nameField.requestFocus();
+		
+}
+
+
+
+public boolean validInput()
+{
+	if(nameField.getText().isEmpty())
+	{
+		JOptionPane.showMessageDialog(null, "Enter name");
+		nameField.requestFocus();
+		return false;
+	}
+	if(nameField.getText().matches("[a-zA-Z]+| [a-zA-Z]+\\s[a-zA-z]"))
+	{
+		JOptionPane.showMessageDialog(null, "Re-Enter name");
+		nameField.requestFocus();
+		return false;
+	}
+	if (streetField.getText().isEmpty())
+	{
+		JOptionPane.showMessageDialog(null, "Enter street");
+		streetField.requestFocus();
+		return false;
+	}
+	if (cityField.getText().isEmpty())
+	{
+		JOptionPane.showMessageDialog(null, "Enter city");
+		cityField.requestFocus();
+		return false;
+	}
+	if (stateField.getText().isEmpty())
+	{
+		JOptionPane.showMessageDialog(null,"Enter State");
+		stateField.requestFocus();
+		return false;
+	}
+	if (zipField.getText().isEmpty())
+	{
+		JOptionPane.showMessageDialog(null,"Enter zip");
+		zipField.requestFocus();
+		return false;
+	}
+	if (!zipField.getText().matches("\\d{5}"))
+	{
+		JOptionPane.showMessageDialog(null,"Re-enter zip");
+		zipField.requestFocus();
+		return false;
+	}
+	if (creditCardNumberField.getText().isEmpty())
+	{
+		JOptionPane.showMessageDialog(null,"Enter Credit Card Number");
+		creditCardNumberField.requestFocus();
+		return false;
+	}
+	if (!creditCardNumberField.getText().matches("[4-6]\\d{3}-\\d{4}-\\d{4}-\\d{4}"))
+	{
+		JOptionPane.showMessageDialog(null,"Re-enter credit card number");
+		creditCardNumberField.requestFocus();
+		return false;
+	}
+	if (phoneNumberField.getText().isEmpty())
+	{
+		JOptionPane.showMessageDialog(null,"Enter Phone Number");
+		phoneNumberField.requestFocus();
+		return false;
+	}
+	if (!phoneNumberField.getText().matches("\\(\\d{3}\\)-\\d{3}-\\d{4}"))
+	{
+		JOptionPane.showMessageDialog(null,"Re-enter phone number");
+		phoneNumberField.requestFocus();
+		return false;
+	}
+	return true;
+	}	
+	
+}
+
+//Hamd Teklu
+//HW1
+
+public class Rental
+
+{
+	private double pricePerDay;
+	private int numberOfDays;
+	private int numberOfMiles;
+	//private int passenger;
+	
+
+	public Rental()
+	{
+		setPricePerDay(0);
+		setNumberOfDays(0);
+		setNumberOfMiles(0);
+		//setPassenger(0);
+		
+
+	}
+
+	public Rental(double ppd,int nod,int nom)
+	{
+		setPricePerDay(ppd);
+		setNumberOfDays(nod); 
+		setNumberOfMiles(nom);
+		//setPassenger(g);
+
+	}
+
+	public void setPricePerDay (double ppd)
+	{
+		pricePerDay= ppd;
+
+	
+
+	}
+
+	public void setNumberOfDays (int nod)
+	{
+		numberOfDays= nod;
+
+	}
+
+	public void setNumberOfMiles (int nom)
+	{
+		numberOfMiles= nom;
+
+	}
+	/*public void setPassenger (int g)
+	{
+		passenger= g;
+
+	}*/
+
+
+
+	public double getPricePerDay()
+	{
+		return pricePerDay;
+	}
+
+	public int getNumberOfDays()
+	{
+		return numberOfDays;
+	}
+
+	public int getNumberOfMiles()
+	{
+		return numberOfMiles;
+	}
+	/*public int getPassenger()
+	{
+		return passenger;
+	}*/
+
+	public String toString()
+	{
+		return( "Price" + pricePerDay+ "Days" + numberOfDays + "Mile" + numberOfMiles );
+	}
+}
+
+
+DROP TABLE customer;
+DROP TABLE rental;
+
+
+
+
+CREATE TABLE customer (
+   customerID INT NOT NULL GENERATED ALWAYS AS IDENTITY,
+   
+   name varchar (20) NOT NULL,
+   street varchar (30) NOT NULL,
+   city varchar (30) NOT NULL,
+   state varchar (30) NOT NULL,
+   zip varchar (30) NOT NULL,
+   creditCardNumber varchar(30) NOT NULL,
+   phoneNumber varchar (30) NOT NULL,
+
+   PRIMARY KEY (customerID)
+);
+
+
+CREATE TABLE rental (
+   rentalID INT NOT NULL GENERATED ALWAYS AS IDENTITY,
+   name varchar (20) NOT NULL,
+   pricePerDay decimal (30) NOT NULL,
+   numberOfDays varchar (20) NOT NULL,
+   numberOfMiles varchar (20) NOT NULL,
+   carType varchar (30) NOT NULL,
+   tonSize varchar (20) Not NULL,
+   passenger varchar (20) NOT NULL,
+
+
+   PRIMARY KEY (rentalID)
+);
+
+
+import java.sql.Connection;
+import java.sql.Statement;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+
+public class DisplayRental {
+   
+   public static void main(String args[]) {
+      final String DATABASE_URL = "jdbc:derby:rental";        
+      final String SELECT_QUERY =                            
+         "SELECT * FROM rental";
+
+      // use try-with-resources to connect to and query the database
+      try {                                                       
+         Connection connection = DriverManager.getConnection(      
+            DATABASE_URL, "davis", "davis");                     
+         Statement statement = connection.createStatement();       
+         ResultSet resultSet = statement.executeQuery(SELECT_QUERY);
+
+         // get ResultSet's meta data
+         ResultSetMetaData metaData = resultSet.getMetaData();
+         int numberOfColumns = metaData.getColumnCount();     
+         
+         System.out.printf("Customer Table of Books Database:%n%n");
+
+         // display the names of the columns in the ResultSet
+         for (int i = 1; i <= numberOfColumns; i++) {
+            System.out.printf("%-8s\t", metaData.getColumnName(i));
+         }
+         System.out.println();
+         
+         // display query results
+         while (resultSet.next()) {
+            for (int i = 1; i <= numberOfColumns; i++) {
+               System.out.printf("%-8s\t", resultSet.getObject(i));
+            }
+            System.out.println();
+         } 
+      }
+      catch (SQLException sqlException) {
+         sqlException.printStackTrace();
+      }                                                   
+   } 
+} 
+
+
+// Hamd Teklu
+// hwk 2
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.*;
+import javax.swing.JRadioButton;
+
+public class RentalPanel extends JPanel
+{
+	
+	
+	private JLabel nameLabel;
+	private JLabel pricePerDayLabel;
+	private JLabel numberOfDaysLabel;
+	private JLabel numberOfMilesLabel;
+	private JLabel carTypeLabel;
+	private JLabel passengerLabel;
+	private JLabel tonSizeLabel;
+
+	private JButton submitButton;
+	
+	private JTextField nameField;
+	private JTextField pricePerDayField;
+	private JTextField numberOfDaysField;
+	private JTextField numberOfMilesField;
+	private JTextField carTypeField;
+	private JTextField passengerField;
+	private JTextField tonSizeField;
+	
+	private JCheckBox car;
+	private JCheckBox truck;
+	
+	private JRadioButton sedan;
+	private JRadioButton coupe;
+	private JRadioButton convertible;
+	private JRadioButton sport;
+	
+	private ButtonGroup radioGroup;
+	private ButtonGroup boxGroup;
+
+
+
+	public RentalPanel()
+	{
+		setLayout(new GridLayout(9,2));
+		//textField = new JTextField("Please select the type of vehicle first");
+		
+		nameLabel = new JLabel(" Enter name ");
+		pricePerDayLabel = new JLabel(" Enter price ");
+		numberOfDaysLabel = new JLabel(" Enter number of days ");
+		numberOfMilesLabel= new JLabel(" Enter number of miles ");
+		carTypeLabel= new JLabel(" Enter carType ");
+		passengerLabel = new JLabel (" Please, enter the number of passenger ");
+		tonSizeLabel = new JLabel (" Please enter ton size ");
+		
+		car = new JCheckBox("Car");
+		truck = new JCheckBox("Truck");
+		
+		sedan = new JRadioButton("Sedan");
+		coupe = new JRadioButton("Coupe");
+		convertible = new JRadioButton("Convertible");
+		sport = new JRadioButton("Sport");
+		
+		radioGroup = new ButtonGroup();
+		boxGroup = new ButtonGroup();
+		
+		boxGroup.add(car);
+		boxGroup.add(truck);
+			
+		
+		radioGroup.add(sedan);
+		radioGroup.add(coupe); 
+		radioGroup.add(convertible); 
+		radioGroup.add(sport);
+		
+		
+		submitButton = new JButton(" Click to Submit ");
+		
+		nameField = new JTextField(20);
+		nameField.setToolTipText(" e.g first and last name ");
+		pricePerDayField = new JTextField(20);
+		pricePerDayField.setToolTipText(" e.g  $ 15.00 ");
+		numberOfDaysField = new JTextField(20);
+		numberOfDaysField.setToolTipText(" must be a whole number. e.g '10' ");
+		numberOfMilesField= new JTextField(20);
+		numberOfMilesField.setToolTipText(" Please enter a whole number ");
+		carTypeField= new JTextField(20);
+		carTypeField.setToolTipText(" Please enter a car type ");
+		passengerField = new JTextField(20);
+		passengerField.setToolTipText(" must be a whole number ");
+		tonSizeField = new JTextField(20);
+		tonSizeField.setToolTipText(" must be a whole number ");
+		
+		
+		// when the customer select car
+		car.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent ae)
+			{
+				passengerLabel.setEnabled(true);
+				passengerField.setEnabled(true);
+				sedan.setEnabled(true);
+				coupe.setEnabled(true);
+				convertible.setEnabled(true);
+				sport.setEnabled(true);
+				tonSizeLabel.setEnabled(false);
+				tonSizeField.setEnabled(false);
+			}
+		});
+		
+		// when the customer select truck
+		truck.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent ae)
+			{
+				if (truck.isSelected())
+				{
+					passengerLabel.setEnabled(false);
+					passengerField.setEnabled(false);
+					sedan.setEnabled(false);
+					coupe.setEnabled(false);
+					convertible.setEnabled(false);
+					sport.setEnabled(false);
+					tonSizeLabel.setEnabled(true);
+					tonSizeField.setEnabled(true);
+				}
+				else
+				{}
+				
+			}
+		});
+		
+
+		submitButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent ae)
+			{
+				String name;
+				String carType;
+				String pricePerDay;
+				String numberOfDays;
+				String numberOfMiles;
+				String passenger;
+				String tonSize;
+
+				if(validInput())
+				{
+				
+					name = nameField.getText();
+					pricePerDay = pricePerDayField.getText();
+					numberOfDays = numberOfDaysField.getText();
+					numberOfMiles = numberOfMilesField.getText();
+					//passenger = Integer.parseInt(passengerField.getText());
+					tonSize = tonSizeField.getText();
+					passenger=passengerField.getText();
+					carType=carTypeField.getText();
+					
+					
+					DBMethod db = new DBMethod();
+					db.insertRental(name, pricePerDay, numberOfDays, numberOfMiles, carType,tonSize, passenger);
+					clearAll();				
+								
+				}
+
+
+			}
+		});
+		add(car);
+		add(truck);
+		add(nameLabel);
+		add(nameField);
+		add(pricePerDayLabel);
+		add(pricePerDayField);
+		add(numberOfDaysLabel);
+		add(numberOfDaysField);
+		add(numberOfMilesLabel);
+		add(numberOfMilesField);
+		add(carTypeLabel);
+		add(carTypeField);
+		add(passengerLabel);
+		add(passengerField);
+		add(tonSizeLabel);
+		add(tonSizeField);
+		
+		//add(car);
+		//add(truck);
+		//add(sedan); 
+	    //add(coupe); 
+		//add(convertible); 
+		//add(sport);
+		
+		add(submitButton);
+	}
+
+	public void clearAll()
+	{
+		pricePerDayField.setText("");
+		numberOfDaysField.setText("");
+		numberOfMilesField.setText("");
+		carTypeField.setText("");
+		passengerField.setText("");
+		tonSizeField.setText("");
+
+		pricePerDayField.requestFocus();
+
+	}
+	
+	public boolean validInput()
+	{
+		if(pricePerDayField.getText().isEmpty())
+		{
+			JOptionPane.showMessageDialog(null, "enter a price");
+			pricePerDayField.requestFocus();
+			return false;
+		}
+		else if(numberOfDaysField.getText().isEmpty())
+		{
+			JOptionPane.showMessageDialog(null, "enter num of days");
+			numberOfDaysField.requestFocus();
+			return false;			
+
+		}
+
+		
+		else if(numberOfMilesField.getText().isEmpty())
+		{
+			JOptionPane.showMessageDialog(null, "enter num of miles");
+			numberOfMilesField.requestFocus();
+			return false;
+		}
+		else if(carTypeField.getText().isEmpty())
+		{
+			JOptionPane.showMessageDialog(null, "enter car type");
+			carTypeField.requestFocus();
+			return false;
+		}
+		else if(carTypeField.getText().isEmpty())
+		{
+			JOptionPane.showMessageDialog(null, "enter car type");
+			carTypeField.requestFocus();
+			return false;
+		}
+		else if (car.isSelected())
+		{
+			if(passengerField.getText().isEmpty())
+			{
+				JOptionPane.showMessageDialog(null, "enter the number of passenger");
+				passengerField.requestFocus();
+				return false;			
+			}
+		}
+		else if(tonSizeField.getText().isEmpty() )
+		{
+			
+			JOptionPane.showMessageDialog(null, "enter the tonSize");
+			tonSizeField.requestFocus();
+			
+			return false;	
+		}
+		else if(truck.isSelected())
+		{
+			if(tonSizeField.getText().isEmpty())
+			{	
+				JOptionPane.showMessageDialog(null, "enter number of days");
+				numberOfDaysField.requestFocus();
+				return false;
+			}
+
+		}
+		return true;
+
+
+
+		
+
+	}
+}
+
+
+import java.sql.Connection;
+import java.sql.Statement;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+
+public class DisplayCustomer {
+   
+   public static void main(String args[]) {
+      final String DATABASE_URL = "jdbc:derby:rental";        
+      final String SELECT_QUERY =                            
+         "SELECT * FROM customer";
+
+      // use try-with-resources to connect to and query the database
+      try {                                                       
+         Connection connection = DriverManager.getConnection(      
+            DATABASE_URL, "davis", "davis");                     
+         Statement statement = connection.createStatement();       
+         ResultSet resultSet = statement.executeQuery(SELECT_QUERY);
+
+         // get ResultSet's meta data
+         ResultSetMetaData metaData = resultSet.getMetaData();
+         int numberOfColumns = metaData.getColumnCount();     
+         
+         System.out.printf("Customer Table of Books Database:%n%n");
+
+         // display the names of the columns in the ResultSet
+         for (int i = 1; i <= numberOfColumns; i++) {
+            System.out.printf("%-8s\t", metaData.getColumnName(i));
+         }
+         System.out.println();
+         
+         // display query results
+         while (resultSet.next()) {
+            for (int i = 1; i <= numberOfColumns; i++) {
+               System.out.printf("%-8s\t", resultSet.getObject(i));
+            }
+            System.out.println();
+         } 
+      }
+      catch (SQLException sqlException) {
+         sqlException.printStackTrace();
+      }                                                   
+   } 
+} 
+
+
+//Hamd Teklu
+//hw2
+
+import java.sql.*;
+import javax.swing.*;
+
+public class DBMethod
+{
+	private final String DATABASE_URL = "jdbc:derby:rentals";
+
+	private Connection connection = null;
+
+	private Statement statement = null;
+	private ResultSet resultSet = null;
+
+	private int res;
+	private int ser;
+
+	private PreparedStatement insertCustomer = null;
+	private PreparedStatement insertRental = null;
+
+	public void insertCustomer(String name,String street,String city,String state,String zip,String creditCardNumber,String phoneNumber)
+	{
+		final String DATABASE_URL = "jdbc:derby:rentals"; 
+
+		try
+		{
+			connection = DriverManager.getConnection(DATABASE_URL, "davis", "davis");
+
+			statement = connection.createStatement();
+
+			insertCustomer = connection.prepareStatement ("INSERT INTO customer(name, street, city, state, zip, creditCardNumber, phoneNumber) VALUES(?,?,?,?,?,?,?)");
+				
+			insertCustomer.setString(1,name);
+			insertCustomer.setString(2,street);
+			insertCustomer.setString(3,city);
+			insertCustomer.setString(4,state);
+			insertCustomer.setString(5,zip);
+			insertCustomer.setString(6,creditCardNumber);
+			insertCustomer.setString(7,phoneNumber);
+ 
+			res = insertCustomer.executeUpdate();
+		}
+		catch(SQLException sqle)
+		{
+			sqle.printStackTrace();
+		}
+	}
+	public void insertRental(String name, String pricePerDay, String numberOfDays,String numberOfMiles,String carType,String tonSize, String passenger)
+	{
+
+		try
+		{
+			connection = DriverManager.getConnection(DATABASE_URL, "davis", "davis");
+			statement = connection.createStatement();
+
+			insertRental = connection.prepareStatement("INSERT INTO rental (name, pricePerDay, numberOfDays, numberOfMiles, carType, tonSize, passenger ) VALUES (?,?,?,?,?,?,?)");
+			
+			insertRental.setString(1,name);
+			insertRental.setString(2,pricePerDay);
+			insertRental.setString(3,numberOfDays);
+			insertRental.setString(4,numberOfMiles);
+			insertRental.setString(5,carType);
+			
+			insertRental.setString(6,tonSize);
+			
+			insertRental.setString(7,passenger);
+
+			ser = insertRental.executeUpdate();
+		}
+		catch(SQLException sqle)
+		{
+			sqle.printStackTrace();
+		}
+
+	}
+	public void DisplayCustomer() {
+
+      final String DATABASE_URL = "jdbc:derby:rentals";        
+      final String SELECT_QUERY = "SELECT name, street, city, state, zip, creditCardNumber, phoneNumber FROM customer";
+
+
+      try {                                                     
+         connection = DriverManager.getConnection(      
+            DATABASE_URL, "davis", "davis");                     
+         statement = connection.createStatement();       
+         resultSet = statement.executeQuery(SELECT_QUERY); 
+
+         // get ResultSet's meta data
+         ResultSetMetaData metaData = resultSet.getMetaData();
+         int numberOfColumns = metaData.getColumnCount();     
+         
+         System.out.printf("Customers Database:%n%n");
+
+
+         for (int i = 1; i <= numberOfColumns; i++) {
+            System.out.printf("%-8s\t", metaData.getColumnName(i));
+         }
+         System.out.println();
+         
+
+         while (resultSet.next()) {
+            for (int i = 1; i <= numberOfColumns; i++) {
+               System.out.printf("%-8s\t", resultSet.getObject(i));
+            }
+            System.out.println();
+         } 
+      }
+      catch (SQLException sqlException) {
+         sqlException.printStackTrace();
+      }                                                   
+   } 
+ 
+ public void DisplayRental() {
+
+      final String DATABASE_URL = "jdbc:derby:rentals";        
+      final String SELECT_QUERY = "SELECT name, pricePerDay, numberOfDays, numberOfMiles, carType, tonSize, passenger FROM rental";
+
+
+      try {                                                     
+         connection = DriverManager.getConnection(      
+            DATABASE_URL, "davis", "davis");                     
+         statement = connection.createStatement();       
+      	 resultSet = statement.executeQuery(SELECT_QUERY); 
+
+         // get ResultSet's meta data
+         ResultSetMetaData metaData = resultSet.getMetaData();
+         int numberOfColumns = metaData.getColumnCount();     
+         
+         System.out.printf("Rental Database:%n%n");
+
+
+         for (int i = 1; i <= numberOfColumns; i++) {
+            System.out.printf("%-8s\t", metaData.getColumnName(i));
+         }
+         System.out.println();
+         
+
+         while (resultSet.next()) {
+            for (int i = 1; i <= numberOfColumns; i++) {
+               System.out.printf("%-8s\t", resultSet.getObject(i));
+            }
+            System.out.println();
+         } 
+      }
+      catch (SQLException sqlException) {
+         sqlException.printStackTrace();
+      }                                                   
+   } 
+ 
+ public void CalculateCharge()
+ {
+ 	final String DATABASE_URL = "jdbc:derby:rentals";        
+ 	final String SELECT_QUERY = "SELECT name, pricePerDay, numberOfDays from rental";
+
+ 	try
+ 	{
+ 		connection = DriverManager.getConnection(DATABASE_URL, "davis","davis");
+ 		statement = connection.createStatement();	
+ 		resultSet = statement.executeQuery(SELECT_QUERY);
+ 		ResultSetMetaData metaData = resultSet.getMetaData();
+ 		String name = "";
+ 		String msg = "";
+ 		int price = 0;
+ 		int day = 0;
+ 		int total = 0;
+ 		int numberOfColumns = metaData.getColumnCount();
+		//int money;
+
+ 		while(resultSet.next())
+ 		{
+ 			for (int i = 1; i<= numberOfColumns; i++)
+ 			{
+ 				if(metaData.getColumnName(i).equals("NAME"))
+ 				{
+					name = String.valueOf(resultSet.getObject(i));
+ 				}
+ 				/*else if(metaData.getColumnName(i).equals("PRICEPERDAY"))
+ 				{
+ 					price = ((Number)resultSet.getObject(i)).floatValue();
+ 				}*/
+				else if(metaData.getColumnName(i).equals("PRICEPERDAY"))
+ 				{
+ 					price = Integer.parseInt(String.valueOf(resultSet.getObject(i)));
+ 				}
+ 				/*else if (metaData.getColumnName(i).equals("NUMBEROFDAYS"))
+ 				{
+ 					day = ((Number)resultSet.getObject(i)).intValue();
+ 				} */
+				else if (metaData.getColumnName(i).equals("NUMBEROFDAYS"))
+ 				{
+ 					day = Integer.parseInt(String.valueOf(resultSet.getObject(i)));
+ 				} 
+ 			
+ 			}
+			//money=Integer.parseInt(price);
+ 			total = price * day;
+
+ 			//msg += String.format("%s%n", name,"   " ,total);
+			msg= ( "total charge:\n"  + name+" "+ "$"+total);
+
+ 			//total = 0;
+ 		}
+ 		JOptionPane.showMessageDialog(null, msg);
+ 	}
+ 	catch (SQLException sqle)
+ 	{
+ 		sqle.printStackTrace();
+ 	}
+ }
+}
+
+//Hamd Teklu
+//hw2
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.*;
+
+public class MavRentalGUI extends JFrame
+{
+	private JDesktopPane theDesktop;
+	static ArrayList<Customer> customerList = new ArrayList<Customer>();
+	static ArrayList<Rental> rentalList = new ArrayList<Rental>();
+	
+	public MavRentalGUI()
+	{
+		super("Mav Rental System");
+		
+		theDesktop = new JDesktopPane();
+		
+		JMenuBar bar = new JMenuBar();
+		
+		JMenu addMenu = new JMenu("Add");
+		JMenuItem addCustomer = new JMenuItem("Add Customer");
+		JMenuItem addRental = new JMenuItem("Add Rental");
+		
+		addMenu.add(addCustomer);
+		addMenu.add(addRental);
+		
+		JMenu databaseMenu = new JMenu("Database");
+		JMenuItem writeItem = new JMenuItem("Write Database Tables");
+	
+		databaseMenu.add(writeItem);
+	
+		JMenu exitMenu = new JMenu("Exit");
+		JMenuItem calcItem = new JMenuItem("Calculate Charges");
+		JMenuItem exitItem = new JMenuItem("Exit");
+	
+		exitMenu.add(calcItem);
+		exitMenu.add(exitItem);
+		
+		exitItem.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent ae)
+			{	
+				System.exit(0);
+			}
+		});
+		
+		writeItem.addActionListener(new ActionListener()
+		{	
+			public void actionPerformed(ActionEvent ae)
+			{
+				DBMethod db = new DBMethod();
+				db.DisplayCustomer();
+				db.DisplayRental();
+			}
+		});
+
+		calcItem.addActionListener(new ActionListener()
+		{
+				public void actionPerformed(ActionEvent ae)
+				{
+					DBMethod db = new DBMethod();
+					db.CalculateCharge();
+				}
+		});
+
+		addCustomer.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent ae)
+				{
+					JInternalFrame frame = new JInternalFrame("Add Customer",
+							true, true, true, true);
+
+						CustomerPanel cp = new CustomerPanel();
+
+						frame.add(cp);
+						frame.pack();
+						theDesktop.add(frame);
+						frame.setVisible(true);
+				}
+		});
+
+		addRental.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent ae)
+			{
+				JInternalFrame frame = new JInternalFrame("Add Rental",
+						true, true, true, true);
+
+					RentalPanel rp = new RentalPanel();
+
+					frame.add(rp);
+					frame.pack();
+					theDesktop.add(frame);
+					frame.setVisible(true);
+			}
+
+		});
+		
+		bar.add(addMenu);
+		bar.add(databaseMenu);
+		bar.add(exitMenu);
+		
+		setJMenuBar(bar);
+	
+		add(theDesktop);	
+	}
+
+}
+
+
+
+//Hamd Teklu
+//hw2
+import javax.swing.*;
+public class MavRentalGUITest
+
+{
+	public static void main(String args[])
+	{
+		MavRentalGUI gt1 = new MavRentalGUI();
+		gt1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		gt1.setSize(600,400);
+		gt1.setLocationRelativeTo(null);
+		gt1.setVisible(true);
+	}
+}
+
+
+ 
+
+ 
+
+
